@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Whispers in the Wind - The End</title>
-        <link rel="stylesheet" href="styles/styles.css">
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-          </head>
-          <body>
-            <section id="end" class="screen">
-                <div id="hopeful-ending" class="hidden">
-                      <p>Not everything fades. Some things stay.</p>
-                          </div>
-                              <div id="void-ending" class="hidden">
-                                    <p>And then... there was nothing.</p>
-                                        </div>
-                                            <div id="secret-ending" class="hidden">
-                                                  <p>Maybe tomorrow will be different.</p>
-                                                      </div>
-                                                        </section>
+    <title>Whispers in the Wind - The End</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+</head>
+<body>
+    <section id="end" class="screen">
+        <div id="hopeful-ending" class="hidden">
+            <p>Not everything fades. Some things stay.</p>
+        </div>
+        <div id="void-ending" class="hidden">
+            <p>And then... there was nothing.</p>
+        </div>
+        <div id="secret-ending" class="hidden">
+            <p>Maybe tomorrow will be different.</p>
+        </div>
+    </section>
 
-                                                          <script src="scripts/scripts.js"></script>
-                                                            <script>
-                                                                // Check URL parameters to show the correct ending
-                                                                    const urlParams = new URLSearchParams(window.location.search);
-                                                                        const ending = urlParams.get('ending');
+    <script src="scripts/scripts.js"></script>
+    <script>
+        // Check URL parameters to show the correct ending
+        const urlParams = new URLSearchParams(window.location.search);
+        const ending = urlParams.get('ending');
 
-                                                                            if (ending === 'hopeful') {
-                                                                                  document.getElementById('hopeful-ending').classList.remove('hidden');
-                                                                                      } else if (ending === 'void') {
-                                                                                            document.getElementById('void-ending').classList.remove('hidden');
-                                                                                                }
+        if (ending === 'hopeful') {
+            document.getElementById('hopeful-ending').classList.remove('hidden');
+        } else if (ending === 'void') {
+            document.getElementById('void-ending').classList.remove('hidden');
+        }
 
-                                                                                                    // Secret Ending (after 30 seconds)
-                                                                                                        setTimeout(() => {
-                                                                                                              document.getElementById('secret-ending').classList.remove('hidden');
-                                                                                                                  }, 30000);
-                                                                                                                    </script>
-                                                                                                                    </body>
-                                                                                                                    </html>
+        // Secret Ending (after 30 seconds)
+        setTimeout(() => {
+            document.getElementById('secret-ending').classList.remove('hidden');
+        }, 30000);
+    </script>
+</body>
+</html>
