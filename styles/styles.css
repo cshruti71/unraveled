@@ -50,16 +50,27 @@ body {
 
 .fade-in-text {
   opacity: 0;
-  animation: fadeIn 5s forwards;
+  animation: fadeIn 5s forwards, shake 1s infinite, glow 2s infinite;
   font-family: "Creepster", cursive; /* Apply the creepy font to h1 */
-  color: #fff;
-  font-size: 48px;
+  color: red;
+  font-size: 2em;
 }
 
 @keyframes fadeIn {
   to {
     opacity: 1;
   }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+  20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red, 0 0 20px red, 0 0 25px red, 0 0 30px red, 0 0 35px red; }
+  50% { text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red, 0 0 40px red, 0 0 50px red, 0 0 60px red, 0 0 70px red; }
 }
 
 .whispers {

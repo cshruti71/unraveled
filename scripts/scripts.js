@@ -1,5 +1,7 @@
-// GSAP Animations for Opening Page
-gsap.from(".fade-in-text", { opacity: 0, duration: 5, delay: 1 });
+document.addEventListener('DOMContentLoaded', () => {
+    gsap.from(".fade-in-text", { opacity: 0, duration: 8, delay: 1 });
+});
+
 //flicker
 const light = document.querySelector(".flicker-light");
 
@@ -25,7 +27,7 @@ setTimeout(() => {
       <audio id="whisper-audio" src="assets/whispers.mp3"></audio>
       <div class="whispers">
         <p class="whisper-option" id="play-audio">Listen to the Last Words</p>
-        <a href="room.html" class="whisper-option">Follow the Shadow</a>
+        <a href="spiral.html" class="whisper-option">Follow the Shadow</a> <!-- Updated link -->
         <p class="whisper-option" id="restart">Forget</p>
       </div>
     </div>
@@ -49,7 +51,19 @@ setTimeout(() => {
 
   // Re-add event listener for restart (reloads page)
   document.getElementById("restart").addEventListener("click", () => {
-    location.reload();
+    // Shake effect
+    gsap.to(document.body, {
+      x: "+=10",
+      yoyo: true,
+      repeat: 10,
+      duration: 0.05,
+      ease: "power1.inOut",
+      onComplete: () => {
+        // Go blank
+        document.body.innerHTML = "";
+        document.body.style.background = "#000";
+      }
+    });
   });
 
   console.log("Page updated and event listeners reattached.");

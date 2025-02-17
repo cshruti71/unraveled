@@ -3,23 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Spiral – Echoes That Stay</title>
+    <title id="txtt">The Spiral – Echoes That Stay</title>
     <link rel="stylesheet" href="spiral.css"> <!-- Link to the CSS file -->
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet"> <!-- Creepy font -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script> <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script> <!-- Howler.js for audio -->
 </head>
 <body>
 
     <div id="spiral-container">
-        <!-- Container for the entire scene -->
-        <div id="staircase-container">
-            <!-- Container for the staircase steps -->
-            <div class="stair-step"></div>
-            <div class="stair-step"></div>
-            <div class="stair-step"></div>
-            <div class="stair-step"></div>
-            <div class="stair-step"></div>
-            <div class="stair-step"></div>
-        </div>
-
         <!-- Text appears and fades using GSAP -->
         <div id="text-container">
             <p id="spiral-text">The staircase seems endless...</p>
@@ -33,18 +25,79 @@
             <button id="climb-higher">Climb Higher</button>
             <button id="let-go">Let Go</button>
         </div>
-
-        <!-- Audio element for background sound -->
-        <audio id="background-audio" src="assets/heartbeat.mp3" loop></audio>
-
-        <!-- Audio control buttons -->
-        <button class="audio-control" data-action="play-audio">Play Audio</button>
-        <button class="audio-control" data-action="pause-audio">Pause Audio</button>
-        <button class="audio-control" data-action="restart-audio">Restart Audio</button>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script> <!-- GSAP for animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script> <!-- Howler.js for audio -->
-    <script src="scripts/spiral.js"></script> <!-- Link to the new JavaScript file -->
+    <script>
+        window.onload = () => {
+            const userInput = document.getElementById('user-input');
+            const climbButton = document.getElementById('climb-higher');
+            const letGoButton = document.getElementById('let-go');
+            const textContainer = document.getElementById('text-container');
+            const spiralText = document.getElementById('spiral-text');
+            const userChoice = document.getElementById('user-choice');
+
+            // Heartbeat audio
+            var heartbeat = new Howl({
+                src: ['assets/heartbeat.mp3'],
+                volume: 0.4,
+                loop: true
+            });
+            heartbeat.play();
+
+            // Slow down heartbeat gradually
+            gsap.to(heartbeat, {
+                volume: 0.2, // Decrease volume for fading heartbeat
+                duration: 5
+            });
+
+            // First text fades in
+            gsap.fromTo(spiralText, { opacity: 0 }, { opacity: 1, duration: 3 });
+
+            // Fade in second text after a short delay
+            setTimeout(() => {
+                gsap.to(spiralText, { opacity: 0, duration: 2 });
+                setTimeout(() => {
+                    spiralText.innerHTML = "The path grows darker...";
+                    gsap.fromTo(spiralText, { opacity: 0 }, { opacity: 1, duration: 3 });
+                }, 2000);
+            }, 4000);
+
+            // Once the second text fades out, show the user choices (the three notes)
+            setTimeout(() => {
+                userChoice.style.display = 'block';
+                gsap.fromTo("#climb-higher", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1 });
+                gsap.fromTo("#let-go", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1 });
+            }, 7000);
+
+            // Typing effect for user input (it fades out after typing)
+            userInput.addEventListener('input', () => {
+                gsap.to(userInput, { opacity: 0, duration: 5 });
+            });
+
+            // Handle user choices
+            climbButton.addEventListener('click', () => {
+                gsap.to(textContainer, {
+                    opacity: 0,
+                    duration: 2,
+                    onComplete: () => {
+                        // Redirect to index.html
+                        window.location.href = 'index.html';
+                    }
+                });
+            });
+
+            letGoButton.addEventListener('click', () => {
+                // Screen shake effect
+                gsap.to("#spiral-container", {
+                    x: "+=10",
+                    yoyo: true,
+                    repeat: -1,
+                    duration: 0.05,
+                    ease: "power1.inOut"
+                });
+            });
+        };
+    </script>
+
 </body>
 </html>

@@ -1,10 +1,30 @@
 body {
-    background-color: #000;
-    color: #fff;
-    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
+    background-image: url('assets/download\ \(1\).jpg'); /* Path to your background image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
-
+.flicker-light {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}
+#txtt {
+    opacity: 0;
+    animation: fadeIn 10s forwards;
+    font-family: "Creepster", cursive; /* Apply the creepy font */
+    color: #fff;
+    font-size: 59px;
+    text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red, 0 0 40px red, 0 0 50px red, 0 0 60px red, 0 0 70px red;
+}
 #spiral-container {
     position: relative;
     width: 100%;
@@ -13,25 +33,6 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-#staircase-container {
-    position: relative;
-    width: 80%;
-    height: 60%;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.stair-step {
-    width: 100%;
-    height: 20px;
-    background: linear-gradient(to bottom, #333, #111);
-    margin: 5px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 #text-container {
@@ -68,9 +69,10 @@ button {
     border: 2px solid #fff;
     color: #fff;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, box-shadow 0.3s;
 }
 
 button:hover {
     background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red, 0 0 40px red;
 }
