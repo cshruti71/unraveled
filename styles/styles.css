@@ -2,10 +2,30 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   background-color: black;
   color: white;
-  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 1s ease-in-out;
+}
+.flicker-light {
+  width: 1000px; /* Reduce width for more subtle bulb shape */
+  height: 200px; /* Adjust height for a bulb-like effect */
+  position: absolute;
+  top: -190px; /* Position the circle off-screen (hidden at top) */
+  left: 50%; /* Horizontally center the light */
+  transform: translateX(-50%);
+  border-radius: 50%; /* Rounded edges to simulate a bulb */
+  background: radial-gradient(
+    circle,
+    rgba(246, 242, 235, 0.8) 0%,
+    rgba(255, 165, 0, 0) 100%
+  ); /* Glowing effect fading downwards */
+  box-shadow: 0 0 1000px rgba(249, 249, 248, 0.8); /* Large glowing effect */
+  z-index: 9999; /* Ensure the light is above other content */
 }
 
 .screen {
@@ -31,11 +51,14 @@ body {
 .fade-in-text {
   opacity: 0;
   animation: fadeIn 5s forwards;
+  font-family: "Creepster", cursive; /* Apply the creepy font to h1 */
+  color: #fff;
+  font-size: 48px;
 }
 
 @keyframes fadeIn {
   to {
-      opacity: 1;
+    opacity: 1;
   }
 }
 
@@ -101,7 +124,9 @@ body {
   background-color: black;
 }
 
-#hopeful-ending, #void-ending, #secret-ending {
+#hopeful-ending,
+#void-ending,
+#secret-ending {
   opacity: 0;
   animation: fadeIn 5s forwards;
 }
